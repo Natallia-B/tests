@@ -1,9 +1,10 @@
 Feature: Example feature
-  As a user of Cucumber.js
-  I want to have documentation on Cucumber
-  So that I can concentrate on building awesome applications
+  As a user of PI
+  I want to be able to navigate to dashboard.
 
-  Scenario: Reading documentation
-    Given I am on the Cucumber.js GitHub repository
-    When I click on "CLI"
-    Then I should see "Running specific features"
+  Scenario: Log in
+    Given I am on Next Primary Intelligence signing in page
+    When Enter login
+    # And Enter password
+    # And I click log in
+    # Then I should see "Dashboard | TruVoice"
