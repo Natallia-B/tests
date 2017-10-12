@@ -5,6 +5,6 @@ Feature: Example feature
   Scenario: Log in
     Given I am on Next Primary Intelligence signing in page
     When Enter login
-    # And Enter password
+    When Enter password
     # And I click log in
     # Then I should see "Dashboard | TruVoice"

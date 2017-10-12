@@ -4,19 +4,33 @@ var {defineSupportCode} = require('cucumber');
 defineSupportCode(function({Given, When, Then}) {
   Given('I am on Next Primary Intelligence signing in page', function() {
    
-    this.driver.get('https://next.primary-intel.com');
+    return this.driver.get('https://next.primary-intel.com');
   });
 
   When('Enter login', function () {
-    return this.driver.wait(until.titleIs('Dashboard | TruVoice')
+    let self = this;
+    return self.driver.wait(until.titleIs('TruVoice'),15000)
 
     .then(function () {
-    return this.driver.findElement(By.id('username_id')).sendKeys('rallen@primary-intel.com');
-    
-  }),
-  5000)
+    return self.driver.findElement(By.id('username_id')).sendKeys('rallen@primary-intel.com');
     
   })
+  // .then(()=>{
+  //   self.driver.sleep(3000);
+  // });
+    
+  })
+  When('Enter password', function () {
+    let self = this;
+    // return self.driver.wait(until.titleIs('TruVoice'),15000)
+
+    // .then(function () {
+    return self.driver.findElement(By.id('password_id')).sendKeys('mega plex 17');
+    
+  })
+  // .then(()=>{
+  //   self.driver.sleep(3000);
+  });
   
 
   
@@ -34,5 +48,5 @@ defineSupportCode(function({Given, When, Then}) {
   //   var condition = until.titleIs({text});
   //   return this.driver.wait(condition, 5000);
 
-});
+// });
 
