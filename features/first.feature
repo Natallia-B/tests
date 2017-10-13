@@ -2,9 +2,12 @@ Feature: Example feature
   As a user of PI
   I want to be able to navigate to dashboard.
 
-  Scenario: Log in
-    Given I am on Next Primary Intelligence signing in page
-    When Enter login
-    When Enter password
-    # And I click log in
-    # Then I should see "Dashboard | TruVoice"
+  Background:
+    Given Log in to Dashboard
+  
+  Scenario: Navigate to the sample page
+    Given The side-bar menu is expanded
+    When I navigate to research
+    When I navigate to sample
+    
+    Then I am on the Sample page
