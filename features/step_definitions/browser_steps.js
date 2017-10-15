@@ -1,5 +1,7 @@
-var webdriver = require('selenium-webdriver');
-var {defineSupportCode} = require('cucumber');
+let webdriver = require('selenium-webdriver');
+let {defineSupportCode} = require('cucumber');
+let chai = require('chai');
+let expect = chai.expect;
 
 defineSupportCode(function({Given, When, Then}) {
   Given('Log in to Dashboard', function() {
@@ -38,38 +40,43 @@ defineSupportCode(function({Given, When, Then}) {
       return this.driver.findElement(By.id('menu-trigger')).click();
     //  });
     });
+    When(/^I navigate to '(.+)'$/, function (name) {
+      let data = {
+          'Research': {
+              selector: By.xpath('.//*[@id="sidebar"]/div[1]/ul/li[2]/a'),
+              elText: 'Research'},
+          'Sample': {
+              selector: By.xpath('.//*[@id="sidebar"]/div[1]/ul/li[2]/ul/li[1]/a'),
+              elText:'Sample'},
+      };
+      let self = this;
+      
+      return Promise.resolve()
+           .then(()=>{
+            return self.driver.wait(()=>{
+              return self.driver.findElement(data[name].selector)
+            }, 5000)
+           })
+           .then(()=>{
+            return self.driver.findElement(data[name].selector).isDisplayed()
+           })
+           .then(()=>{
+            return self.driver.findElement(data[name].selector).click()
+           })
+           .then(()=>{
+            if(data[name].elText){
+                return self.driver.findElement(data[name].selector).getText();
+            }
+           })
+           .then((text)=>{
+            if(text){
+                // if(text !== data[name].elText ) throw new Error('non visible');
+                expect(text).to.equal(data[name].elText);
+            }
+          });
 
-  When('I navigate to research', function() {
-    return Promise.resolve()
-     .then(()=>{
-      return this.driver.wait(()=>{
-        return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/a'))
-      }, 5000)
-     })
-     .then(()=>{
-      return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/a')).isDisplayed()
-     })
-     .then(()=>{
-      return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/a')).click()
-     })
-     
-});
+    });
 
-  When('I navigate to sample', function() {
-    return Promise.resolve()
-     .then(()=>{
-      return this.driver.wait(()=>{
-        return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/ul/li[1]/a'))
-      }, 5000)
-     })
-     .then(()=>{
-      return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/ul/li[1]/a')).isDisplayed()
-     })
-     .then(()=>{
-      return this.driver.findElement(By.xpath('//*[@id="sidebar"]/div[1]/ul/li[2]/ul/li[1]/a')).click()
-     })
-   
-  });
   Then('I am on the Sample page', function() {
     return Promise.resolve()
     .then(()=>{

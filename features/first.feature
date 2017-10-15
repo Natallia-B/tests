@@ -7,7 +7,7 @@ Feature: Example feature
   
   Scenario: Navigate to the sample page
     Given The side-bar menu is expanded
-    When I navigate to research
-    When I navigate to sample
+    When I navigate to 'Research'
+    When I navigate to 'Sample'
     
     Then I am on the Sample page
