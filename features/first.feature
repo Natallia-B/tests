@@ -9,5 +9,5 @@ Feature: Example feature
     Given The side-bar menu is expanded
     When I navigate to 'Research'
     When I navigate to 'Sample'
-    
-    Then I am on the Sample page
+    When I am on the Sample page
+    When I navigate to 'ADD SAMPLE'

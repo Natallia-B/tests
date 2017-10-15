@@ -48,6 +48,9 @@ defineSupportCode(function({Given, When, Then}) {
           'Sample': {
               selector: By.xpath('.//*[@id="sidebar"]/div[1]/ul/li[2]/ul/li[1]/a'),
               elText:'Sample'},
+          'ADD SAMPLE': {
+              selector: By.xpath('//*[@id="research-sample-header"]/ul/li[2]/a'),
+              elText:'ADD SAMPLE'},
       };
       let self = this;
       
@@ -77,7 +80,7 @@ defineSupportCode(function({Given, When, Then}) {
 
     });
 
-  Then('I am on the Sample page', function() {
+  When('I am on the Sample page', function() {
     return Promise.resolve()
     .then(()=>{
       return this.driver.wait(until.titleIs('Sample | TruVoice'),15000)
