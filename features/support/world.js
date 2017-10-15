@@ -9,8 +9,8 @@ function CustomWorld() {
     .build();
     global.By = webdriver.By;
     global.until = webdriver.until;
-    // driver.Window.maximize();
-    this.driver.manage().window().setSize(779, 431);
+    this.driver.manage().window().maximize();
+    // this.driver.manage().window().setSize(1100, 800);
 }
 
 defineSupportCode(function({setWorldConstructor}) {
